@@ -1,0 +1,814 @@
+{
+  "meta": {
+    "name": "OAR Constraints Database",
+    "version": "0.4",
+    "dose_model_scope": [
+      "Conventional fractionation (typically 1.8–2.0 Gy/fx) — QUANTEC summary",
+      "Selected SRS/SBRT limits — QUANTEC summary + Emami 2013 SBRT tables"
+    ],
+    "auto_defaults_applied": {
+      "basis_fractionation_default": { "n": 30, "d": 2.0 },
+      "alpha_beta_defaults_rationale": [
+        "Late-responding serial neural tissues: alpha/beta ~2 Gy (spinal cord, brainstem, optic)",
+        "Late-responding soft tissues: alpha/beta ~3 Gy (parotid, larynx, heart/pericardium, penile bulb, cochlea)",
+        "Acute mucosa-like endpoints: alpha/beta ~10 Gy (acute esophagitis-type endpoints)"
+      ]
+    },
+    "critical_notes": [
+      "These constraints are guidance-level summaries. Always verify against the original organ papers / protocol and your institutional SOP before clinical use.",
+      "Definitions matter: Dmax may refer to point dose or a small volume (e.g., 0.03 cc). Keep your local definition consistent.",
+      "SBRT constraints in Emami 2013 Table 3 are described as 'mostly unvalidated' and are included here as a starting point only."
+    ],
+    "sources": [
+      "Wikibooks QUANTEC page (summary table)",
+      "QUANTEC Summary Table (Marks et al. 2010 supplement) — attached quantec.pdf",
+      "Emami B. Tolerance of Normal Tissue to Therapeutic Radiation (Reports of Radiotherapy and Oncology, 2013) — attached PDF"
+    ]
+  },
+  "techniques": ["3DCRT", "IMRT", "VMAT", "SRS", "SBRT"],
+  "sites": {
+    "CNS (Conventional)": {
+      "constraints": [
+        {
+          "organ": "Brain (whole)",
+          "metric": "Dmax",
+          "limit": "60",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmax < 60 Gy. Symptomatic necrosis <3% for Dmax<60 Gy (standard fractionation).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Brainstem (whole)",
+          "metric": "Dmax",
+          "limit": "54",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmax < 54 Gy. Permanent cranial neuropathy/necrosis <5%.",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Brainstem (whole)",
+          "metric": "D(1–10cc)",
+          "limit": "59",
+          "units": "Gy",
+          "volume": "1–10cc",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Small volumes 1–10 cc may tolerate up to ~59 Gy with <5% risk (use caution; definition varies).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Brainstem (whole)",
+          "metric": "Dmax",
+          "limit": "64",
+          "units": "Gy",
+          "volume": "<<1cc (point)",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: point dose <<1cc up to ~64 Gy with <5% risk (high caution).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Optic nerve/chiasm (each)",
+          "metric": "Dmax",
+          "limit": "55",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmax < 55 Gy. Optic neuropathy risk <3%.",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Spinal cord",
+          "metric": "Dmax",
+          "limit": "50",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Myelopathy risk ~0.2% at 50 Gy (standard fractionation).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Cochlea (each)",
+          "metric": "Dmean",
+          "limit": "45",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmean ≤ 45 Gy (endpoint definition varies).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "CFRT_1p8-2Gyfx",
+          "label": "Conventional fractionation (1.8–2.0 Gy/fx)",
+          "n_fractions": 30,
+          "dose_per_fraction_Gy": 2.0,
+          "techniques": ["3DCRT", "IMRT", "VMAT"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "Head & Neck (Conventional)": {
+      "constraints": [
+        {
+          "organ": "Parotids (both)",
+          "metric": "Dmean",
+          "limit": "25",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmean < 25 Gy. Lower xerostomia risk (summary guidance).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT"]
+        },
+        {
+          "organ": "Parotid (one)",
+          "metric": "Dmean",
+          "limit": "20",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Unilateral mean <20 Gy (or at least one gland spared) associated with better salivary function.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT"]
+        },
+        {
+          "organ": "Pharyngeal constrictors",
+          "metric": "Dmean",
+          "limit": "50",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmean < 50 Gy (dysphagia/aspiration guidance).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Larynx",
+          "metric": "Dmean",
+          "limit": "44",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmean < 44 Gy (edema guidance; context dependent).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Larynx",
+          "metric": "V50",
+          "limit": "27",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Edema guidance: V50 < 27% (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "HNSCC_CFRT",
+          "label": "Conventional fractionation (typical H&N courses)",
+          "n_fractions": 35,
+          "dose_per_fraction_Gy": 2.0,
+          "techniques": ["3DCRT", "IMRT", "VMAT"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "Thorax (Conventional)": {
+      "constraints": [
+        {
+          "organ": "Lung (combined)",
+          "metric": "V20",
+          "limit": "30",
+          "units": "%",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "volume",
+          "notes": "Pneumonitis guidance: V20 ≤ 30% (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Lung (combined)",
+          "metric": "Dmean",
+          "limit": "20",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Mean lung dose guidance: ~20 Gy corresponds to ~20% symptomatic pneumonitis (curve-based).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Esophagus",
+          "metric": "Dmean",
+          "limit": "34",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 10.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: Dmean < 34 Gy (acute Grade ≥3 esophagitis guidance; endpoint-specific).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Heart (pericardium)",
+          "metric": "Dmean",
+          "limit": "26",
+          "units": "Gy",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: mean < 26 Gy (pericarditis guidance).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Heart (pericardium)",
+          "metric": "V30",
+          "limit": "46",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Pericarditis guidance: V30 < 46% (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "THORAX_CFRT",
+          "label": "Conventional fractionation (thorax)",
+          "n_fractions": 30,
+          "dose_per_fraction_Gy": 2.0,
+          "techniques": ["3DCRT", "IMRT", "VMAT"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "Abdomen (Conventional)": {
+      "constraints": [
+        {
+          "organ": "Liver (whole liver minus GTV)",
+          "metric": "Dmean",
+          "limit": "32",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.5,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: mean < 30–32 Gy (RILD guidance; depends on baseline liver function). Stored numeric=32 for EQD2.",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Kidneys (both)",
+          "metric": "Dmean",
+          "limit": "18",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.5,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: mean ~15–18 Gy (renal dysfunction guidance). Stored numeric=18 for EQD2.",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Stomach (whole)",
+          "metric": "D100",
+          "limit": "45",
+          "units": "Gy",
+          "volume": "100%",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: D100% < 45 Gy (ulceration guidance).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Small bowel (individual loops)",
+          "metric": "V15",
+          "limit": "120",
+          "units": "cc",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Grade ≥3 acute toxicity guidance: V15 < 120 cc (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        },
+        {
+          "organ": "Peritoneal cavity (potential space)",
+          "metric": "V45",
+          "limit": "195",
+          "units": "cc",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Grade ≥3 acute toxicity guidance: V45 < 195 cc (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["3DCRT", "IMRT", "VMAT"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "ABD_CFRT",
+          "label": "Conventional fractionation (abdomen)",
+          "n_fractions": 30,
+          "dose_per_fraction_Gy": 2.0,
+          "techniques": ["3DCRT", "IMRT", "VMAT"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "Pelvis (Prostate, Conventional)": {
+      "constraints": [
+        {
+          "organ": "Rectum",
+          "metric": "V50",
+          "limit": "50",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Late rectal toxicity associated with DVH constraints (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Rectum",
+          "metric": "V60",
+          "limit": "35",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Rectum",
+          "metric": "V65",
+          "limit": "25",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Rectum",
+          "metric": "V70",
+          "limit": "20",
+          "units": "%",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Rectum",
+          "metric": "V75",
+          "limit": "15",
+          "units": "%",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Bladder",
+          "metric": "V65",
+          "limit": "50",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "RTOG0415-style DVH patterns referenced in QUANTEC summary (volume metric; not EQD2-converted).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Bladder",
+          "metric": "V70",
+          "limit": "35",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Bladder",
+          "metric": "V75",
+          "limit": "25",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Bladder",
+          "metric": "V80",
+          "limit": "15",
+          "units": "%",
+          "volume": "",
+          "priority": "SOFT",
+          "limit_type": "volume",
+          "notes": "Volume metric; not EQD2-converted.",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        },
+        {
+          "organ": "Penile bulb",
+          "metric": "Dmean_to_95%_volume",
+          "limit": "50",
+          "units": "Gy",
+          "volume": "95%",
+          "priority": "SOFT",
+          "limit_type": "dose",
+          "alpha_beta": 3.0,
+          "basis_fractionation": { "n": 30, "d": 2.0 },
+          "notes": "Use as: mean dose to 95% volume < 50 Gy (ED guidance; endpoint-specific).",
+          "source": "QUANTEC summary table",
+          "techniques": ["IMRT", "VMAT", "3DCRT"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "PROSTATE_CFRT",
+          "label": "Conventional fractionation (prostate)",
+          "n_fractions": 39,
+          "dose_per_fraction_Gy": 2.0,
+          "techniques": ["3DCRT", "IMRT", "VMAT"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "Intracranial (SRS, 1 fx)": {
+      "constraints": [
+        {
+          "organ": "Brain (normal brain)",
+          "metric": "V12Gy",
+          "limit": "10",
+          "units": "cc",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "volume",
+          "notes": "Stored 10 cc for filtering; guidance is V12 < 5–10 cc (symptomatic necrosis increases above this).",
+          "source": "QUANTEC summary table",
+          "techniques": ["SRS"]
+        },
+        {
+          "organ": "Optic nerve/chiasm (each)",
+          "metric": "Dmax",
+          "limit": "12",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 1, "d": 12.0 },
+          "notes": "Use as: Dmax < 12 Gy (single-fraction SRS).",
+          "source": "QUANTEC summary table",
+          "techniques": ["SRS"]
+        },
+        {
+          "organ": "Brainstem",
+          "metric": "Dmax",
+          "limit": "12.5",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 1, "d": 12.5 },
+          "notes": "Use as: Dmax < 12.5 Gy (single-fraction SRS; context noted in summary).",
+          "source": "QUANTEC summary table",
+          "techniques": ["SRS"]
+        },
+        {
+          "organ": "Spinal cord (partial cross-section)",
+          "metric": "Dmax",
+          "limit": "13",
+          "units": "Gy",
+          "volume": "",
+          "priority": "HARD",
+          "limit_type": "dose",
+          "alpha_beta": 2.0,
+          "basis_fractionation": { "n": 1, "d": 13.0 },
+          "notes": "Myelopathy ~1% at 13 Gy (single fraction; partial cord cross-section).",
+          "source": "QUANTEC summary table",
+          "techniques": ["SRS"]
+        }
+      ],
+      "fractionations": [
+        {
+          "id": "SRS_1fx",
+          "label": "Single-fraction SRS",
+          "n_fractions": 1,
+          "dose_per_fraction_Gy": null,
+          "techniques": ["SRS"],
+          "constraints": []
+        }
+      ]
+    },
+
+    "SBRT (3 fx / 5 fx) — Emami 2013 tables": {
+      "constraints": [],
+      "fractionations": [
+        {
+          "id": "SBRT_3fx",
+          "label": "SBRT 3 fractions (Emami 2013 Table 3 — mostly unvalidated)",
+          "n_fractions": 3,
+          "dose_per_fraction_Gy": null,
+          "techniques": ["SBRT"],
+          "constraints": [
+            {
+              "organ": "Optic pathway",
+              "metric": "Dmax",
+              "limit": "15",
+              "units": "Gy",
+              "volume": "0.2 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 2.0,
+              "basis_fractionation": { "n": 3, "d": 5.0 },
+              "notes": "3-fx SBRT table: critical volume 0.2 ml; max dose 15 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Spinal cord",
+              "metric": "Dmax",
+              "limit": "18",
+              "units": "Gy",
+              "volume": "<0.25 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 2.0,
+              "basis_fractionation": { "n": 3, "d": 6.0 },
+              "notes": "3-fx SBRT table: max dose 18 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Esophagus",
+              "metric": "Dmax",
+              "limit": "22.5",
+              "units": "Gy",
+              "volume": "<5 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 10.0,
+              "basis_fractionation": { "n": 3, "d": 7.5 },
+              "notes": "3-fx SBRT table: max dose 22.5 Gy (endpoint depends; alpha/beta here set to 10 as acute-biased default).",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Heart/Pericardium",
+              "metric": "Dmax",
+              "limit": "24",
+              "units": "Gy",
+              "volume": "<15 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 3, "d": 8.0 },
+              "notes": "3-fx SBRT table: max dose 24 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Trachea / ipsilateral bronchus",
+              "metric": "Dmax",
+              "limit": "18",
+              "units": "Gy",
+              "volume": "<4 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 3, "d": 6.0 },
+              "notes": "3-fx SBRT table: max dose 18 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Lung (both)",
+              "metric": "Critical_volume_dose_max",
+              "limit": "11.4",
+              "units": "Gy",
+              "volume": "1000 ml",
+              "priority": "SOFT",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 3, "d": 3.8 },
+              "notes": "3-fx SBRT table: parallel tissue style; critical volume 1000 ml; critical volume dose max 11.4 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Liver",
+              "metric": "Critical_volume_dose_max",
+              "limit": "7.1",
+              "units": "Gy",
+              "volume": "700 ml",
+              "priority": "SOFT",
+              "limit_type": "dose",
+              "alpha_beta": 2.5,
+              "basis_fractionation": { "n": 3, "d": 2.37 },
+              "notes": "3-fx SBRT table: parallel tissue style; critical volume 700 ml; critical volume dose max 7.1 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 3-fx)",
+              "techniques": ["SBRT"]
+            }
+          ]
+        },
+        {
+          "id": "SBRT_5fx",
+          "label": "SBRT 5 fractions (Emami 2013 Table 3 — mostly unvalidated)",
+          "n_fractions": 5,
+          "dose_per_fraction_Gy": null,
+          "techniques": ["SBRT"],
+          "constraints": [
+            {
+              "organ": "Optic pathway",
+              "metric": "Dmax",
+              "limit": "20",
+              "units": "Gy",
+              "volume": "<0.2 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 2.0,
+              "basis_fractionation": { "n": 5, "d": 4.0 },
+              "notes": "5-fx SBRT table: max dose 20 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Spinal cord",
+              "metric": "Dmax",
+              "limit": "23",
+              "units": "Gy",
+              "volume": "<0.25 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 2.0,
+              "basis_fractionation": { "n": 5, "d": 4.6 },
+              "notes": "5-fx SBRT table: max dose 23 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Esophagus",
+              "metric": "Dmax",
+              "limit": "27.5",
+              "units": "Gy",
+              "volume": "<5 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 10.0,
+              "basis_fractionation": { "n": 5, "d": 5.5 },
+              "notes": "5-fx SBRT table: max dose 27.5 Gy (alpha/beta here set to 10 as acute-biased default).",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Heart/Pericardium",
+              "metric": "Dmax",
+              "limit": "30",
+              "units": "Gy",
+              "volume": "<15 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 5, "d": 6.0 },
+              "notes": "5-fx SBRT table: max dose 30 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Trachea / ipsilateral bronchus",
+              "metric": "Dmax",
+              "limit": "32",
+              "units": "Gy",
+              "volume": "<4 ml",
+              "priority": "HARD",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 5, "d": 6.4 },
+              "notes": "5-fx SBRT table: max dose 32 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Lung (both)",
+              "metric": "Critical_volume_dose_max",
+              "limit": "13.5",
+              "units": "Gy",
+              "volume": "1000 ml",
+              "priority": "SOFT",
+              "limit_type": "dose",
+              "alpha_beta": 3.0,
+              "basis_fractionation": { "n": 5, "d": 2.7 },
+              "notes": "5-fx SBRT table: critical volume 1000 ml; critical volume dose max 13.5 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            },
+            {
+              "organ": "Liver",
+              "metric": "Critical_volume_dose_max",
+              "limit": "12.1",
+              "units": "Gy",
+              "volume": "700 ml",
+              "priority": "SOFT",
+              "limit_type": "dose",
+              "alpha_beta": 2.5,
+              "basis_fractionation": { "n": 5, "d": 2.42 },
+              "notes": "5-fx SBRT table: critical volume 700 ml; critical volume dose max 12.1 Gy.",
+              "source": "Emami 2013 Table 3 (SBRT, 5-fx)",
+              "techniques": ["SBRT"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
