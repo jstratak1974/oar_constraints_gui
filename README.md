@@ -762,6 +762,3 @@ High-value development priorities are:
 
 These references provide background and validation context. Their inclusion does not mean that every value in the supplied JSON has been independently verified against the cited primary table or current protocol.
 
-## License
-
-No license is declared by the supplied Python or JSON files. Add a `LICENSE` file before distribution and confirm that redistribution of the constraint compilation and any source-derived tables is permitted.
