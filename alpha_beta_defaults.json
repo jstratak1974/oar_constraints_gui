@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "version": "1.0",
+    "notes": [
+      "Rule-of-thumb alpha/beta ratios (Gy) for EQD2/BED conversions.",
+      "When a constraint lacks alpha_beta, the GUI uses: constraint alpha_beta -> organ map -> GUI default.",
+      "Some structures depend strongly on endpoint (e.g., esophagus acute vs late). Provide separate aliases if you wish."
+    ]
+  },
+  "default_alpha_beta": 3.0,
+  "organs": {
+    "spinal cord": 2.0,
+    "cord": 2.0,
+    "spinalcord": 2.0,
+    "cord prv": 2.0,
+
+    "brainstem": 2.0,
+    "brain stem": 2.0,
+    "brainstem prv": 2.0,
+
+    "optic nerve": 2.0,
+    "optic nerves": 2.0,
+    "optic chiasm": 2.0,
+    "chiasm": 2.0,
+    "optic pathway": 2.0,
+    "optic nerve/chiasm": 2.0,
+
+    "brachial plexus": 2.0,
+
+    "brain": 2.0,
+    "whole brain": 2.0,
+    "normal brain": 2.0,
+
+    "cochlea": 3.0,
+    "cochleae": 3.0,
+    "inner ear": 3.0,
+
+    "parotid": 3.0,
+    "parotids": 3.0,
+    "submandibular gland": 3.0,
+    "submandibular glands": 3.0,
+    "salivary glands": 3.0,
+
+    "pharyngeal constrictors": 3.0,
+    "constrictors": 3.0,
+    "larynx": 3.0,
+
+    "oral cavity": 10.0,
+    "oral mucosa": 10.0,
+    "mucosa": 10.0,
+
+    "esophagus (acute)": 10.0,
+    "esophagus acute": 10.0,
+    "esophagus": 10.0,
+
+    "esophagus (late)": 3.0,
+    "esophagus late": 3.0,
+
+    "lung": 3.0,
+    "lungs": 3.0,
+    "lung (combined)": 3.0,
+    "lung (total-ptv)": 3.0,
+
+    "heart": 3.0,
+    "pericardium": 3.0,
+    "heart/pericardium": 3.0,
+
+    "trachea": 3.0,
+    "bronchus": 3.0,
+    "main bronchus": 3.0,
+    "trachea / ipsilateral bronchus": 3.0,
+
+    "liver": 2.5,
+    "kidney": 2.5,
+    "kidneys": 2.5,
+    "kidneys (both)": 2.5,
+
+    "stomach": 3.0,
+    "duodenum": 3.0,
+    "small bowel": 3.0,
+    "small bowel (loops)": 3.0,
+    "jejunum": 3.0,
+    "ileum": 3.0,
+    "colon": 3.0,
+    "large bowel": 3.0,
+    "rectum": 3.0,
+
+    "bladder": 3.0,
+    "femoral head": 3.0,
+    "femoral heads": 3.0,
+
+    "penile bulb": 3.0,
+    "testes": 3.0,
+    "ovary": 3.0,
+    "ovaries": 3.0,
+
+    "skin": 10.0
+  }
+}
